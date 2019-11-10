@@ -1,7 +1,7 @@
 'use strict';
 
 var work_time = 0; 
-var break_time = 300;　//test sec 2 true sec 300
+var break_time = 300;//test sec 2 true sec 300
 var nowStatus = 0;
 var timer;
 var break_count;
@@ -38,7 +38,7 @@ function reSet() {
 
 
 function move_Break() {
-  break_time=2;
+  break_time=300;
   document.getElementById("timer").innerText = break_time;
   document.getElementById("start").disabled=true;
   audio_elm.pause();
