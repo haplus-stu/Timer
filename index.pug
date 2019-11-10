@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+html(lang="ja")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    link(rel="stylesheet", href="style.css")
+    title ポロモード
+    script(src="index.js")
+  body
+
+div
+  p(id ="timer") 0000
+
+  #div(class = "button")
+    button(disabled=false id ="start" type='button',onclick='cntStart()')
+      font(size='2') スタート
+      br
+    button(disabled=true id ="break" type='button',onclick='move_Break()')
+      font(size='2') 休憩
+    button(id="reset" type='button',onclick='force_reSet()')
+      font(size='2') リセット
+  //-input(id ="stop" type='button', value='ストップ', onclick='cntStop()')
+  

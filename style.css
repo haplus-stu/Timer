@@ -1,0 +1,32 @@
+p#timer{
+  font-size: 85px;
+  text-align: center;
+}
+
+
+
+button#start{
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  text-align: center;
+  size: 40px;
+  border-radius: 7px;
+  padding: 20px 78px;
+}
+
+button#break{
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  border-radius: 7px;
+  padding: 20px 95px;
+}
+
+button#reset{
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  border-radius: 7px;
+  padding: 20px 78px;
+}
