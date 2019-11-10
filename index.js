@@ -18,7 +18,7 @@ function cntStart() {
 
 function countDown() {
   nowStatus = 1;
-  audio_elm.src = "カービィすぎて原曲が伝わらない「大きな古時計」.mp3"
+  audio_elm.src = "Clock-Alarm03-01(Loop).mp3"
 
   work_time --;
   document.getElementById("timer").innerText =  work_time; 
@@ -55,7 +55,7 @@ function break_reSet() {
 
 function Breaktime() {
   nowStatus = 0;
-  audio_elm.src = "カービィすぎて原曲が伝わらない「大きな古時計」.mp3"
+  audio_elm.src = "Clock-Alarm03-01(Loop).mp3"
   break_time --;
   document.getElementById("timer").innerText = break_time;
   if(break_time <= 0){
