@@ -3,30 +3,11 @@ p#timer{
   text-align: center;
 }
 
-
-
-button#start{
+button#start,#break,#reset{
   margin-right: auto;
   margin-left: auto;
   display: block;
   text-align: center;
-  size: 40px;
-  border-radius: 7px;
-  padding: 20px 78px;
-}
-
-button#break{
-  margin-right: auto;
-  margin-left: auto;
-  display: block;
-  border-radius: 7px;
-  padding: 20px 95px;
-}
-
-button#reset{
-  margin-right: auto;
-  margin-left: auto;
-  display: block;
-  border-radius: 7px;
-  padding: 20px 78px;
+  width: 200px;
+  height: 80px;
 }
