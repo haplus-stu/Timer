@@ -13,12 +13,8 @@ div
   p(id ="timer") 0000
 
   #div(class = "button")
-    button(disabled=false id ="start" type='button',onclick='cntStart()')
-      font(size='2') スタート
+    button(disabled=false id ="start" type='button',onclick='cntStart()') スタート
       br
-    button(disabled=true id ="break" type='button',onclick='move_Break()')
-      font(size='2') 休憩
-    button(id="reset" type='button',onclick='force_reSet()')
-      font(size='2') リセット
-  //-input(id ="stop" type='button', value='ストップ', onclick='cntStop()')
+    button(disabled=true id ="break" type='button',onclick='move_Break()') 休憩   
+    button(id="reset" type='button',onclick='force_reSet()') リセット
   
