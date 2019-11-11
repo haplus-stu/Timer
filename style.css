@@ -4,6 +4,7 @@ p#timer{
 }
 
 button#start,#break,#reset{
+  font-size: 20px;
   margin-right: auto;
   margin-left: auto;
   display: block;
