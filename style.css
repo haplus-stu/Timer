@@ -1,6 +1,13 @@
-p#timer{
+
+.time{
+}
+
+p#min,#sec{
   font-size: 85px;
+  display:block;
   text-align: center;
+  height: 174px;
+  width: 164px;
 }
 
 button#start,#break,#reset{
