@@ -41,19 +41,29 @@ button#start,#break,#reset{
   border-radius: 7px;
   width: 260px;
   height: 90px;
-}
-
-#start{
   position: relative;
 }
 
 
-.start_img{
+
+
+.start_img,.break_img,.stop_img{
   position: absolute;
   top: 28px;
   left:15px;
   width: 35px;
   height: 35px;
-  background-image:url('start.png');
   background-size: cover;
+}
+
+.start_img{
+  background-image:url('start.png');
+}
+
+.break_img{
+  background-image:url('break.png');
+}
+
+.stop_img{
+  background-image: url('stop.png');
 }
