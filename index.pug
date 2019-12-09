@@ -8,12 +8,16 @@ html(lang="ja")
     title ポモドーロ
     script(src="index.js")
   body
+  #div(class="header")
+    header 
+    h6 ポモドーロタイマー
 
-  h2(id="count_time" value="") 0000
+  h2(id="count_time" value="") 00:00
  
 
   #div(class = "button")
     button(disabled=false id ="start" type='button',onclick='cntStart()') スタート
+      #div(class="start_img")
       br
     button(disabled=true id ="break" type='button',onclick='move_Break()') 休憩   
     button(id="reset" type='button',onclick='force_reSet()') リセット

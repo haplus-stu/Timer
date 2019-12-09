@@ -1,21 +1,59 @@
 
-.time{
+*{
+  margin: 0px;
+  padding: 0px;
 }
 
-p#min,#sec{
-  font-size: 85px;
+.header{
+  height: 58px;
+  font-size: 28px;
+  background-color: #e9e9e9;
+  text-align: center;
+  font-weight: bold;
+  display: block;
+}
+
+h6{
+  padding-top: 15px;
+}
+
+#count_time{
+  margin-top: 60px;
+  margin-bottom: 60px;
+  font-family:'Haettenschweiler',sans-serif;
+  font-weight: normal;
+  font-stretch: expanded;
+  font-size: 97px;
   display:block;
   text-align: center;
-  height: 174px;
-  width: 164px;
 }
 
 button#start,#break,#reset{
-  font-size: 20px;
+  font-family: 'ヒラギノ角ゴ Pro W3',sans-serif;
+  font-size: 34px;
+  font-weight: bold;
+  color: white;
+  background:#3a9ad9;
   margin-right: auto;
   margin-left: auto;
   display: block;
   text-align: center;
-  width: 200px;
-  height: 80px;
+  border-radius: 7px;
+  width: 260px;
+  height: 90px;
+}
+
+#start{
+  position: relative;
+}
+
+
+.start_img{
+  position: absolute;
+  top: 28px;
+  left:15px;
+  width: 35px;
+  height: 35px;
+  background-image:url('start.png');
+  background-size: cover;
 }
