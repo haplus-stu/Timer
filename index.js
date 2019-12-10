@@ -1,16 +1,20 @@
 'use strict';
 
 let work_time = 0;
-let break_time = 300; //test sec 2 true sec 300
 let now_status = 0;
+let break_time;
 let timer;
 let break_count;
 let audio_elm = new Audio();
+let break_min,break_sec;
 let min;
 let sec;
 
 function get_min() {
-  return document.min.elements[0].value;
+ if(document.timer.elements[0].value == ""){
+    document.timer.elements[0].value = "0";
+  }
+  return document.timer.elements[0].value;
 }
 
 function get_sec(){
@@ -18,6 +22,20 @@ function get_sec(){
     document.timer.elements[1].value = "0";
   }
   return document.timer.elements[1].value;
+}
+
+function get_break_min() {
+  if(document.timer.elements[2].value == ""){
+    document.timer.elements[2].value = "0";
+  }
+  return document.timer.elements[2].value;
+}
+
+function get_break_sec(){
+  if(document.timer.elements[3].value == ""){
+    document.timer.elements[3].value = "0";
+  }
+  return document.timer.elements[3].value;
 }
 
 function get_Start() {
@@ -42,15 +60,16 @@ function remaing_Time() {
 
 //スタートボタンが押されたとき
 function Start_count() {
+
+  min = parseInt(get_min());
+  sec = parseInt(get_sec()); 
+
 	
   get_Reset().disabled = false;
   get_Start().disabled = true;
-  work_time = 1500; //test sec 5 //true sec 1500
+  work_time = (min*60)+sec;
 
-  let disp_min = work_time/60;
-  let disp_sec = work_time%60;
-
-  let msg = disp_min+":"+zeroPadding(disp_sec,2);
+  let msg = zeroPadding(min,2)+":"+zeroPadding(sec,2);
   remaing_Time().innerHTML = msg;
 
   timer = setInterval('countDown()', 1000);
@@ -61,55 +80,52 @@ function countDown() {
   now_status = 1;
   audio_elm.src = 'Clock-Alarm03-01(Loop).mp3';
 
-  work_time--;
+  if(work_time<=0){
+    work_time=0;
+  }else{
+    work_time--;
+  }
 
-  //getTimer().innerText = work_time;
-  min = Math.floor(work_time/60)%60; 
-  
+  min = Math.floor(work_time/60); 
   sec = Math.floor(work_time%60);
   
   remaing_Time().innerHTML = zeroPadding(min,2)+":"+zeroPadding(sec,2);
 
 
-
   if (work_time <= 0) {
+    clearInterval(timer);
     get_Break().disabled = false;
-    reSet();
     audio_elm.play();
-    audio_elm.loop();
   }
 }
 
-function reSet() {
-  clearInterval(timer);
-  work_time = 0;
-}
 
 function move_Break() {
-  break_time = 300;
-  let break_min = Math.floor(break_time/60);
-  let break_sec = Math.floor(break_time%60);
-  remaing_Time().innerText = break_min+":"+break_sec;
-  get_Start().disabled = true;
-  audio_elm.pause();
-  audio_elm.currentTime = 0;
-  break_count = setInterval('Breaktime()', 1000);
-  console.log('succusess!');
+   break_min = parseInt(get_break_min());
+   break_sec = parseInt(get_break_sec());
+   break_time = break_min*60+break_sec;
+    remaing_Time().innerText = zeroPadding(break_min,2)+":"+zeroPadding(break_sec,2);
+    get_Start().disabled = true;
+    audio_elm.pause();
+    audio_elm.currentTime = 0;
+    break_count = setInterval('Breaktime()', 1000);
 }
 
 function break_reSet() {
   clearInterval(break_count);
   get_Start().disabled = false;
-  console.log('succsess!');
 }
 
 function Breaktime() {
   now_status = 0;
+
   audio_elm.src = 'Clock-Alarm03-01(Loop).mp3';
   break_time--;
-  let break_min = Math.floor(break_time/60);
-  let break_sec = Math.floor(break_time%60);
-  remaing_Time().innerText = break_min+":"+zeroPadding(break_sec,2);
+  
+  let count_break_min = Math.floor(break_time/60);  
+  let count_break_sec = Math.floor(break_time%60);
+
+  remaing_Time().innerText = zeroPadding(count_break_min,2)+":"+zeroPadding(count_break_sec,2);
   if (break_time <= 0) {
     break_reSet();
     audio_elm.play();
@@ -119,7 +135,7 @@ function Breaktime() {
 function force_reSet() {
   if (now_status == 1) {
     clearInterval(timer);
-    remaing_Time().innerText = work_time = 0;
+    remaing_Time().innerText = work_time = "00:00";
     get_Start().disabled = false;
     get_Break().disabled = true;
     get_Reset().disabled = true;
@@ -129,7 +145,7 @@ function force_reSet() {
 
   if (now_status == 0) {
     clearInterval(break_count);
-    remaingTime().innerText = break_time = 0;
+    remaing_Time().innerText = break_time = 0;
     get_Break().disabled = true;
     get_Start().disabled = false;
     audio_elm.pause();

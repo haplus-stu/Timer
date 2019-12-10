@@ -17,10 +17,20 @@ h6{
   padding-top: 15px;
 }
 
+form{
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+input{
+  width: 40px;
+  height: 30px;
+}
+
 #count_time{
   margin-top: 60px;
-  margin-bottom: 60px;
-  font-family:'Haettenschweiler',sans-serif;
+  margin-bottom: 30px;
+  font-family: 'ヒラギノ角ゴ Pro W3',sans-serif;
   font-weight: normal;
   font-stretch: expanded;
   font-size: 97px;

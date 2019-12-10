@@ -12,14 +12,31 @@ html(lang="ja")
       header 
       h6 ポモドーロタイマー
 
-    h2(id="count_time" value="") 00:00
+    h1(id="count_time" value="") 00:00
+
+    form(name="timer")
+      label
+      |集中
+      input(type="number" min=0 value="")
+      |分
+      input(type="number" min=0 value="")
+      |秒
+      br
+      label
+      |休憩
+      input(type="number" min=0 value="")
+      |分
+      input(type="number" min=0 value="")
+      |秒
+
+     
   
 
     #div(class = "button")
       button(disabled=false id ="start" type='button',onclick='Start_count()') スタート
         #div(class="start_img")
         br
-      button(disabled=true id ="break" type='button',onclick='move_Break()') 休憩 
+      button(disabled=true id ="break" type='button',onclick='Breaktime()') 休憩 
         #div(class="break_img") 
       button(id="reset" type='button',onclick='force_reSet()') リセット      
         #div(class="stop_img") 
