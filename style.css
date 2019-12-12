@@ -30,7 +30,7 @@ input{
 #count_time{
   margin-top: 60px;
   margin-bottom: 30px;
-  font-family: 'ヒラギノ角ゴ Pro W3',sans-serif;
+  font-family: sans-serif;
   font-weight: normal;
   font-stretch: expanded;
   font-size: 97px;
@@ -39,7 +39,7 @@ input{
 }
 
 button#start,#break,#reset{
-  font-family: 'ヒラギノ角ゴ Pro W3',sans-serif;
+  font-family: sans-serif;
   font-size: 34px;
   font-weight: bold;
   color: white;
@@ -52,8 +52,7 @@ button#start,#break,#reset{
   width: 260px;
   height: 90px;
   position: relative;
-  border-color: #214c69;
-  border: solid;
+  box-shadow: 0px;
 }
 
 
