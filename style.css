@@ -53,10 +53,8 @@ button#start,#break,#reset{
   width: 260px;
   height: 90px;
   position: relative;
-  box-shadow: 0px;
+  box-shadow: none;
 }
-
-
 
 
 .start_img,.break_img,.stop_img{
