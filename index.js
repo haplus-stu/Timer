@@ -1,14 +1,15 @@
 'use strict';
 
-let work_time = 0;
-let now_status = 0;
-let break_time;
-let timer;
-let break_count;
-let audio_elm = new Audio();
-let break_min,break_sec;
 let min;
 let sec;
+let timer;
+let work_time;
+let break_time;
+let break_count;
+let now_status = 0;
+let audio_elm = new Audio();
+let break_min,break_sec;
+
 
 function get_min() {
  if(document.timer.elements[0].value == ""){
@@ -16,6 +17,8 @@ function get_min() {
   }
   return document.timer.elements[0].value;
 }
+
+
 
 function get_sec(){
   if(document.timer.elements[1].value == ""){

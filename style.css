@@ -52,6 +52,7 @@ button#start,#break,#reset{
   width: 260px;
   height: 90px;
   position: relative;
+  border-color:#3a99d9d2;
 }
 
 
