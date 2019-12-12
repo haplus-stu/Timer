@@ -52,7 +52,7 @@ button#start,#break,#reset{
   width: 260px;
   height: 90px;
   position: relative;
-  border-width: 3px;
+  border: solid;
 }
 
 
