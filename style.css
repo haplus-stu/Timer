@@ -48,8 +48,7 @@ button#start,#break,#reset{
   margin-right: auto;
   margin-left: auto;
   display: block;
-  text-align: center;
-  border-radius: 7px;
+  border-radius: 12px;
   width: 260px;
   height: 90px;
   position: relative;

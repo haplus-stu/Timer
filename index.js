@@ -1,45 +1,11 @@
 'use strict';
 
-let min;
-let sec;
-let timer;
-let work_time;
-let break_time;
+let min,sec,timer;
 let break_count;
 let now_status = 0;
 let audio_elm = new Audio();
+let work_time,break_time;
 let break_min,break_sec;
-
-
-function get_min() {
- if(document.timer.elements[0].value == ""){
-    document.timer.elements[0].value = "0";
-  }
-  return document.timer.elements[0].value;
-}
-
-
-
-function get_sec(){
-  if(document.timer.elements[1].value == ""){
-    document.timer.elements[1].value = "0";
-  }
-  return document.timer.elements[1].value;
-}
-
-function get_break_min() {
-  if(document.timer.elements[2].value == ""){
-    document.timer.elements[2].value = "0";
-  }
-  return document.timer.elements[2].value;
-}
-
-function get_break_sec(){
-  if(document.timer.elements[3].value == ""){
-    document.timer.elements[3].value = "0";
-  }
-  return document.timer.elements[3].value;
-}
 
 function get_Start() {
   return document.getElementById('start');
@@ -61,18 +27,28 @@ function remaing_Time() {
   return document.getElementById('count_time');
 }
 
-//スタートボタンが押されたとき
+//時間の要素取得が多くなったので引数で指定できる関数化
+function need_timer_value(i) {
+  if(document.timer.elements[i].value == "") {
+    return document.timer.elements[i].value = 0;
+  }
+  return document.timer.elements[i].value;
+}
+
+
 function Start_count() {
 
-  min = parseInt(get_min());
-  sec = parseInt(get_sec()); 
+  min = parseInt(need_timer_value(0));
+  sec = parseInt(need_timer_value(1));
+  
 
-	
   get_Reset().disabled = false;
   get_Start().disabled = true;
+
   work_time = (min*60)+sec;
 
   let msg = zeroPadding(min,2)+":"+zeroPadding(sec,2);
+
   remaing_Time().innerHTML = msg;
 
   timer = setInterval('countDown()', 1000);
@@ -84,7 +60,7 @@ function countDown() {
   audio_elm.src = 'Clock-Alarm03-01(Loop).mp3';
 
   if(work_time<=0){
-    work_time=0;
+      work_time = 0;
   }else{
     work_time--;
   }
@@ -104,8 +80,10 @@ function countDown() {
 
 
 function move_Break() {
-   break_min = parseInt(get_break_min());
-   break_sec = parseInt(get_break_sec());
+  
+   break_min = parseInt(need_timer_value(2));
+   break_sec = parseInt(need_timer_value(3));
+
    break_time = break_min*60+break_sec;
     remaing_Time().innerText = zeroPadding(break_min,2)+":"+zeroPadding(break_sec,2);
     get_Start().disabled = true;
@@ -123,8 +101,12 @@ function Breaktime() {
   now_status = 0;
 
   audio_elm.src = 'Clock-Alarm03-01(Loop).mp3';
-  break_time--;
-  
+
+  if(break_time<=0){
+    break_time = 0;  
+  }else{
+    break_time--;
+  }  
   let count_break_min = Math.floor(break_time/60);  
   let count_break_sec = Math.floor(break_time%60);
 
@@ -140,8 +122,7 @@ function force_reSet() {
     clearInterval(timer);
     remaing_Time().innerText = work_time = "00:00";
     get_Start().disabled = false;
-    get_Break().disabled = true;
-    get_Reset().disabled = true;
+    get_Break().disabled = get_Reset().disabled = true;
     audio_elm.pause();
     audio_elm.currentTime = 0;
   }
