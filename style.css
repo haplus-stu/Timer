@@ -23,6 +23,10 @@ form{
   margin-bottom: 40px;
 }
 
+form>select{
+  height:1.5rem;
+}
+
 input{
   width: 40px;
   height: 30px;
@@ -51,9 +55,11 @@ button#start,#break,#reset{
   border-radius: 12px;
   width: 260px;
   height: 90px;
+  outline:none;
   position: relative;
   box-shadow: none;
 }
+
 
 
 .start_img,.break_img,.stop_img{
