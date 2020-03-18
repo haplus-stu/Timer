@@ -141,7 +141,7 @@ function force_reSet() {
 
   if (now_status == 0) {
     clearInterval(timer);
-    remaing_Time().innerText = break_time = 0;
+	remaing_Time().innerText = break_time ="00:00";
     get_Break().disabled = true;
     get_Start().disabled = false;
     audio_elm.pause();

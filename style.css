@@ -73,13 +73,13 @@ button#start,#break,#reset{
 }
 
 .start_img{
-  background-image:url('start.png');
+  background-image:url('img/start.png');
 }
 
 .break_img{
-  background-image:url('break.png');
+  background-image:url('img/break.png');
 }
 
 .stop_img{
-  background-image: url('stop.png');
+  background-image: url('img/stop.png');
 }
