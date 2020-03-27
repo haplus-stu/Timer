@@ -148,3 +148,23 @@ function force_reSet() {
     audio_elm.currentTime = 0;
   }
 }
+
+//値の取得とJSON文字列への変換まで完了
+
+function save_pattern(){
+	min = parseInt(need_timer_value(0))*60;
+	sec = parseInt(need_timer_value(1));
+	console.log(min);
+	console.log(sec);
+	let time_pattern= {
+       work_min: parseInt(need_timer_value(0))*60,
+       work_sec: parseInt(need_timer_value(1)),
+       break_min: parseInt(need_timer_value(2))*60,
+       break_sec: parseInt(need_timer_value(3)),
+	};
+
+	let obj = JSON.stringify(time_pattern);
+
+
+	console.log(time_pattern);
+}
