@@ -6,7 +6,6 @@ html(lang="ja")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     link(rel="stylesheet", href="style.css")
     title ポモドーロ
-    script(src="index.js")
   body
     #div(class="header")
       header 
@@ -29,8 +28,9 @@ html(lang="ja")
       input(type="number" min=0 value="")
       |秒
 
-    button(id='save_pattern' onclick='save_pattern()') 保存
-     
+
+    button(id='save_pattern' onclick='save_pattern()') プリセットを作成
+    ul(id='preset')
   
 
     #div(class = "button")
@@ -41,3 +41,5 @@ html(lang="ja")
         #div(class="break_img") 
       button(id="reset" type='button',onclick='force_reSet()') リセット      
         #div(class="stop_img") 
+
+    script(src="index.js")
