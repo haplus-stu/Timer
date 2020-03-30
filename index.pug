@@ -28,12 +28,14 @@ html(lang="ja")
       input(type="number" min=0 value="")
       |秒
 
-
-    button(id='save_pattern' onclick='save_pattern()') プリセットを作成
-    ul(id='preset')
+    div(class='preset_btn')
+      button(id='save_pattern' onclick='save_pattern()') プリセットを作成
+      button(id='disp_pattern' onclick='view_preset()') プリセット一覧を表示
+    div(class='preset_area')
+      ul(id='preset')
   
 
-    #div(class = "button")
+    div(class = "button")
       button(disabled=false id ="start" type='button',onclick='Start_count()') スタート
         #div(class="start_img")
         br

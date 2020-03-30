@@ -31,6 +31,19 @@ function remaing_Time() {
   return document.getElementById('count_time');
 }
 
+
+function view_preset(){
+  let ul = document.querySelector('.preset_wrapper');
+  if(ul.classList.contains('open')){
+    ul.classList.remove('open');
+    document.getElementById('disp_pattern').innerText='プリセット一覧を表示'
+  }else{
+    ul.classList.add('open');
+    document.getElementById('disp_pattern').innerText='プリセット一覧を非表示'
+  }  
+}
+
+
 //プリセット表示関数
 //プリセット名表示まで完了
 window.onload = function(){
@@ -40,28 +53,12 @@ window.onload = function(){
 			let jsonObj = localStorage.getItem(key_name);
 			let jsObj = JSON.parse(jsonObj);
 
-			const liEl = document.createElement('li');
-			const read_liEl_value = this.document.createElement('button');
-			read_liEl_value.textContent='読み出し';
-			read_liEl_value.setAttribute('onclick','set_preset_value(this)');
-      read_liEl_value.setAttribute('value',i);
-      
-      const remove_liEl_value = this.document.createElement('button');
-			remove_liEl_value.textContent='削除';
-			remove_liEl_value.setAttribute('onclick','remove_preset(this)');
-      remove_liEl_value.setAttribute('value',i);
-      
-
-			liEl.textContent = key_name+':'+'集中時間 :'+jsObj.work_min/60+'分'+jsObj.work_sec+'秒'+' 休憩時間 :'+jsObj.break_min/60+'分'+jsObj.break_sec+'秒'; 
-			pelm.appendChild(liEl);
-      liEl.appendChild(read_liEl_value);
-      liEl.appendChild(remove_liEl_value);
-
-			//console.log(cnt);
-			//console.log(key_name);
-			//console.log(jsObj);
-			//console.log(liEl);
-			
+			const liEl = document.createElement('option');
+      //liEl.textContent = key_name+':'+'集中時間 :'+jsObj.work_min/60+'分'+jsObj.work_sec+'秒'+' 休憩時間 :'+jsObj.break_min/60+'分'+jsObj.break_sec+'秒';       
+      liEl.textContent = key_name;
+      liEl.setAttribute('value',i);
+      pelm.appendChild(liEl);
+      console.log(liEl);
 		}
 	}
 }
@@ -78,32 +75,49 @@ function need_timer_value(i) {
 
 function save_pattern(){
   let preset_name = window.prompt('プリセット名を入力してください','無題のプリセット');
+  if(preset_name == null) throw alert('キャンセルされました。');
+  
   let w_min = window.prompt('集中したい分数を入力してください','0');
-  let w_sec = window.prompt('集中したい秒数を入力してください','0');
-  let b_min = window.prompt('休憩したい分数を入力してください','0');
-  let b_sec = window.prompt('休憩したい秒数を入力してください','0');
+  if(w_min  == null) throw alert('キャンセルされました。');
 
-	let time_pattern= {
-       work_min: parseInt(w_min)*60,
-       work_sec: parseInt(w_sec),
-       break_min: parseInt(b_min)*60,
-       break_sec: parseInt(b_sec),
-	};
+  let w_sec = window.prompt('集中したい秒数を入力してください','0');
+  if(w_sec  == null) throw alert('キャンセルされました。');
+  
+  let b_min = window.prompt('休憩したい分数を入力してください','0');
+  if(b_min  == null) throw alert('キャンセルされました。');
+  
+  let b_sec = window.prompt('休憩したい秒数を入力してください','0');
+  if(b_sec  == null) throw alert('キャンセルされました。');
+
+
+  if(w_min == 0 && w_sec == 0 && b_min == 0 && b_sec == 0){
+    throw  alert('すべての入力値が0です');
+  }
+
+
+  let time_pattern= {
+    work_min: parseInt(w_min)*60,
+    work_sec: parseInt(w_sec),
+    break_min: parseInt(b_min)*60,
+    break_sec: parseInt(b_sec),
+};
+
 
 	let obj = JSON.stringify(time_pattern);
 
 	localStorage.setItem(preset_name,obj);
-	location.reload();
+  location.reload();
 
-//	console.log(time_pattern);
+  console.log(time_pattern);
 //	console.log(obj_name);
 }
 
 
 
 function set_preset_value(btn){
+  let preset_no = document.getElementById('preset').value;
 
-	key_name = localStorage.key(btn.value);
+	key_name = localStorage.key(preset_no);
 	let jsonObj = localStorage.getItem(key_name);
 	let jsObj = JSON.parse(jsonObj);
 

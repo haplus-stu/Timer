@@ -13,6 +13,10 @@
   display: block;
 }
 
+.page_wrapper{
+  position: relative;
+}
+
 h6{
   font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', sans-serif, arial;
   padding-top: 15px;
@@ -23,14 +27,13 @@ form{
   margin-bottom: 40px;
 }
 
-form>select{
-  height:1.5rem;
-}
 
 input{
   width: 40px;
   height: 30px;
 }
+
+
 
 #count_time{
   margin-top: 60px;
@@ -40,6 +43,10 @@ input{
   font-stretch: expanded;
   font-size: 97px;
   display:block;
+  text-align: center;
+}
+
+.button{
   text-align: center;
 }
 
@@ -61,7 +68,26 @@ button#start,#break,#reset{
   box-shadow: none;
 }
 
+.preset_wrapper{
+  display: none;
+  text-align: center;
+}
 
+.preset_wrapper.open{
+  display: block;
+  margin: 0 auto 5vh auto;
+}
+
+#preset{
+  /* border-radius: 5px; */
+  -webkit-appearance: none;
+  box-shadow: none;
+}
+
+
+.preset_btn{
+  text-align: center;
+}
 
 .start_img,.break_img,.stop_img{
   position: absolute;
