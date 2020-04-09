@@ -15,32 +15,34 @@
         <h6>ポモドーロタイマー</h6>
     </div>
     <div class="page_wrapper">
-        <h1 id="count_time" >00:00</h1>
+        <h1 id="count_time">00:00</h1>
         <form name="timer"><label></label>集中<input type="number" min="0" value="" />分<input type="number" min="0"
-            value="" />秒<br /><label></label>休憩<input type="number" min="0" value="" />分<input type="number" min="0"
-            value="" />秒</form>
+                value="" />秒<br /><label></label>休憩<input type="number" min="0" value="" />分<input type="number" min="0"
+                value="" />秒</form>
 
-            <div class="preset_wrapper">  
-                <select class ='preset' id="preset" ></select>
-                <br>
-                <button id='use_btn' class ='preset' class='preset_btn'  onclick="set_preset_value(this)">使用</button>
-                <button id="save_pattern" onclick="save_pattern()">プリセットを作成</button>
-                <button id='delete_btn' class ='preset' class='preset_btn'  onclick="remove_preset(this)">削除</button>
-            </div>
-            
+        <div class="preset_wrapper">
+            <select class='preset' id="preset"></select>
+            <br>
+            <button id='use_btn' class='preset' class='preset_btn' onclick="set_preset_value(this)">使用</button>
+            <button id="save_pattern" onclick="save_pattern()">プリセットを作成</button>
+            <button id='delete_btn' class='preset' class='preset_btn' onclick="remove_preset(this)">削除</button>
+        </div>
+
         <div class="preset_btn">
             <button id="disp_pattern" onclick="view_preset()">プリセット一覧</button>
         </div>
 
-        <div class="button"><button id="start" type="button" onclick="Start_count()">スタート<div class="start_img" id="div">
+        <div class="button"><button id="start" type="button" onclick="Start_count()">スタート<div class="start_img"
+                    id="div">
                 </div><br /></button><button disabled="disabled" id="break" type="button" onclick="move_Break()">休憩 <div
-                    class="break_img" id="div"> </div></button><button id="reset" type="button" onclick="force_reSet()">リセット
+                    class="break_img" id="div"> </div></button><button id="reset" type="button"
+                onclick="force_reSet()">リセット
                 <div class="stop_img" id="div"> </div></button></div>
 
         <div class="preset_area">
 
 
-            
+
         </div>
         <script src="index.js"></script>
     </div>

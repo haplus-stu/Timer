@@ -1,10 +1,9 @@
-
-*{
+* {
   margin: 0px;
   padding: 0px;
 }
 
-.header{
+.header {
   height: 58px;
   font-size: 28px;
   background-color: #e9e9e9;
@@ -13,94 +12,96 @@
   display: block;
 }
 
-button{
+button {
   border: none;
 }
 
-.page_wrapper{
+.page_wrapper {
   position: relative;
 }
 
-h6{
+h6 {
   font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', sans-serif, arial;
   padding-top: 15px;
 }
 
-form{
+form {
   text-align: center;
   margin-bottom: 25px;
 }
 
 
-input{
+input {
   width: 40px;
   height: 28px;
 }
 
-.preset_wrapper button{
+.preset_wrapper button {
   margin-top: 2vh;
 }
 
-#count_time{
+#count_time {
   margin-top: 60px;
   margin-bottom: 25px;
   font-family: sans-serif;
   font-weight: normal;
   font-stretch: expanded;
   font-size: 100px;
-  display:block;
+  display: block;
   text-align: center;
 }
 
-.button{
+.button {
   text-align: center;
 }
 
-#disp_pattern{
+#disp_pattern {
   margin-bottom: 2vh;
   padding: .5em;
   border-radius: 5px;
-  background:#F1322C;
-  border-bottom:4px solid rgb(194, 46, 41) ;
+  background: #F1322C;
+  border-bottom: 4px solid rgb(194, 46, 41);
   color: #fff;
 }
 
-#disp_pattern:hover{
+#disp_pattern:hover {
   transition: .2s;
   cursor: pointer;
   text-decoration: none;
-  background: #AD2022;;
+  background: #AD2022;
+  ;
   transform: translate3d(0, 4px, 0);
   border-bottom: none;
 }
 
-#delete_btn{
+#delete_btn {
   margin-bottom: 2vh;
   padding: .5em;
   border-radius: 5px;
-  background:rgb(238, 241, 44);
-  border-bottom:4px solid rgb(209, 212, 30);
+  background: rgb(238, 241, 44);
+  border-bottom: 4px solid rgb(209, 212, 30);
 }
 
-#delete_btn:hover{
+#delete_btn:hover {
   transition: .2s;
   cursor: pointer;
   text-decoration: none;
-  background: rgb(187, 171, 27);;
+  background: rgb(187, 171, 27);
+  ;
   transform: translate3d(0, 4px, 0);
   border-bottom: none;
 }
 
-#use_btn{
+#use_btn {
   margin-bottom: 2vh;
   padding: .5em;
   border-radius: 5px;
-  background:rgb(255, 145, 2);
+  background: rgb(255, 145, 2);
   color: #ebebeb;
-  border-bottom:4px solid rgb(211, 122, 5);
+  border-bottom: 4px solid rgb(211, 122, 5);
 }
 
-#use_btn:hover{
+#use_btn:hover {
   transition: .2s;
   cursor: pointer;
   text-decoration: none;
@@ -109,96 +110,102 @@ input{
   border-bottom: none;
 }
 
-#save_pattern{
+#save_pattern {
   padding: .5em;
   background: rgb(5, 141, 118);
   color: #fff;
   border-radius: 5px;
-  border-bottom:4px solid rgb(15, 85, 73) ;
+  border-bottom: 4px solid rgb(15, 85, 73);
 }
 
-#save_pattern:hover{
+#save_pattern:hover {
   transition: .3s;
   cursor: pointer;
-  background:  rgb(12, 100, 85);
+  background: rgb(12, 100, 85);
   transform: translate3d(0, 4px, 0);
   border-bottom: none;
 }
 
-button#start,#break,#reset{
+button#start,
+#break,
+#reset {
   font-family: sans-serif;
   font-size: 34px;
   font-weight: bold;
   color: white;
-  background:#3a9ad9;
-  border-bottom:5px solid rgb(44, 118, 167);
+  background: #3a9ad9;
+  border-bottom: 5px solid rgb(44, 118, 167);
   margin-right: auto;
   margin-left: auto;
-  margin-bottom:.5rem;
+  margin-bottom: .5rem;
   display: block;
   border-radius: 12px;
   width: 260px;
   height: 90px;
-  outline:none;
+  outline: none;
   position: relative;
   /* box-shadow: 3px 3px 10px 2px #6e6e6ed7; */
   /* border: none; */
 }
 
-#start:hover,#break:hover,#reset:hover{
+#start:hover,
+#break:hover,
+#reset:hover {
   transition: .2s;
-  background:#2378b1;
+  background: #2378b1;
   cursor: pointer;
   transform: translate3d(0, 4px, 0);
   border-bottom: none;
- 
+
 }
 
-.preset_wrapper{
+.preset_wrapper {
   display: none;
   text-align: center;
 }
 
-.preset_wrapper.open{
+.preset_wrapper.open {
   display: block;
   margin: 0 auto 5vh auto;
 }
 
-#preset{
+#preset {
   -webkit-appearance: none;
   box-shadow: none;
 }
 
-.preset{
+.preset {
   display: none;
 }
 
-.preset.isActive{
+.preset.isActive {
   display: inline-block;
 }
 
 
-.preset_btn{
+.preset_btn {
   text-align: center;
 }
 
-.start_img,.break_img,.stop_img{
+.start_img,
+.break_img,
+.stop_img {
   position: absolute;
   top: 28px;
-  left:15px;
+  left: 15px;
   width: 35px;
   height: 35px;
   background-size: cover;
 }
 
-.start_img{
-  background-image:url('img/start.png');
+.start_img {
+  background-image: url('img/start.png');
 }
 
-.break_img{
-  background-image:url('img/break.png');
+.break_img {
+  background-image: url('img/break.png');
 }
 
-.stop_img{
+.stop_img {
   background-image: url('img/stop.png');
 }
