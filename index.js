@@ -165,6 +165,7 @@ function Start_count() {
   let msg = zeroPadding(min, 2) + ":" + zeroPadding(sec, 2);
 
   remaing_Time().innerHTML = msg;
+  document.title='ポモドーロ[集中]'
 
   timer = setInterval('countDown()', 1000);
 }
@@ -187,6 +188,7 @@ function countDown() {
 
 
   if (work_time <= 0) {
+	document.title='ポモドーロ'
     clearInterval(timer);
     now_status = 0;
     get_Start().disabled = false;
@@ -213,6 +215,7 @@ function move_Break() {
     get_Start().disabled = true;
     get_Break().disabled = true;
   }
+	document.title='ポモドーロ[休憩]'
 
   timer = setInterval('Breaktime()', 1000);
 }
@@ -239,6 +242,7 @@ function Breaktime() {
     audio_elm.play();
     get_Start().disabled = false;
     get_Break().disabled = get_Reset().disabled = true;
+	document.title='ポモドーロ'
   }
 }
 
@@ -260,4 +264,7 @@ function force_reSet() {
     audio_elm.pause();
     audio_elm.currentTime = 0;
   }
+	document.title='ポモドーロ'
 }
+
+//コンテンツブロッカー関数
