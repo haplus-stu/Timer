@@ -153,9 +153,6 @@ function set_preset_value() {
     document.timer.elements[1].value = jsObj.work_sec;
     document.timer.elements[2].value = jsObj.break_min / 60;
     document.timer.elements[3].value = jsObj.break_sec;
-
-
-    location.reload();
 }
 
 function remove_preset(btn) {
