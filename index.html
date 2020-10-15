@@ -1,48 +1,88 @@
 <!DOCTYPE html>
 <html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js"></script>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js"></script>
+        <title>ポモドーロ</title>
+    </head>
 
-    <title>ポモドーロ</title>
-</head>
-
-<body>
-    <div class="header" id="div">
-        <header> </header>
-        <h6>ポモドーロタイマー</h6>
-    </div>
-    <div class="page_wrapper">
-        <h1 id="count_time">00:00</h1>
-        <form name="timer"><label></label>集中<input type="number" min="0" value="" />分<input type="number" min="0"
-                value="" />秒<br /><label></label>休憩<input type="number" min="0" value="" />分<input type="number" min="0"
-                value="" />秒</form>
-
-        <div class="preset_wrapper">
-            <select class='preset' id="preset"></select>
-            <br>
-            <button id='use_btn' class='preset' class='preset_btn' onclick="set_preset_value(this)">使用</button>
-            <button id="save_pattern" onclick="save_pattern()">プリセットを作成</button>
-            <button id='delete_btn' class='preset' class='preset_btn' onclick="remove_preset(this)">削除</button>
+    <body>
+        <div class="header" id="div">
+            <header></header>
+            <h6>ポモドーロタイマー</h6>
         </div>
+        <div class="page_wrapper">
+            <h1 id="count_time">00:00</h1>
+            <form name="timer">
+                <label></label>集中<input
+                    type="number"
+                    min="0"
+                    value=""
+                />分<input
+                    type="number"
+                    min="0"
+                    value=""
+                />秒<br /><label></label>休憩<input
+                    type="number"
+                    min="0"
+                    value=""
+                />分<input type="number" min="0" value="" />秒
+            </form>
 
-        <div class="preset_btn">
-            <button id="disp_pattern" onclick="toggle_preset_elm()">プリセット一覧</button>
+            <div class="preset_wrapper">
+                <select class="preset" id="preset"></select>
+                <br />
+                <button
+                    id="use_btn"
+                    class="preset"
+                    class="preset_btn"
+                    onclick="setPresetValue(this)"
+                >
+                    使用
+                </button>
+                <button id="save_pattern" onclick="savePattern()">
+                    プリセットを作成
+                </button>
+                <button
+                    id="delete_btn"
+                    class="preset"
+                    class="preset_btn"
+                    onclick="removePreset(this)"
+                >
+                    削除
+                </button>
+            </div>
+
+            <div class="preset_btn">
+                <button id="disp_pattern" onclick="togglePresetElm()">
+                    プリセット一覧
+                </button>
+            </div>
+
+            <div class="button">
+                <button id="start" type="button" onclick="startCount()">
+                    スタート
+                    <div class="start_img" id="div"></div>
+                    <br /></button>
+                <button
+                    disabled="disabled"
+                    id="break"
+                    type="button"
+                    onclick="moveBreak()"
+                >
+                    休憩
+                    <div class="break_img" id="div"></div></button
+                ><button id="reset" type="button" onclick="forceReset()">
+                    リセット
+                    <div class="stop_img" id="div"></div>
+                </button>
+            </div>
+            <script src="index.js"></script>
         </div>
-
-        <div class="button"><button id="start" type="button" onclick="Start_count()">スタート<div class="start_img"
-                    id="div">
-                </div><br /></button><button disabled="disabled" id="break" type="button" onclick="move_Break()">休憩 <div
-                    class="break_img" id="div"> </div></button><button id="reset" type="button"
-                onclick="force_reSet()">リセット
-                <div class="stop_img" id="div"> </div></button></div>
-        <script src="index.js"></script>
-    </div>
-</body>
-
+    </body>
 </html>

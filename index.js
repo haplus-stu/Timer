@@ -60,12 +60,10 @@ function togglePresetElm() {
     let ul = document.querySelector(".preset_wrapper");
 
     if (ul.classList.contains("open")) {
-
         ul.classList.remove("open");
         needElement("disp_pattern").innerText = "プリセット一覧";
 
     } else {
-
         ul.classList.add("open");
         needElement("disp_pattern").innerText = "閉じる";
 
@@ -82,7 +80,7 @@ window.onload = function () {
 
             element_under_preset[j].classList.add("isActive");
         }
-        needElement("savePattern").textContent = "作成";
+        needElement("save_pattern").textContent = "作成";
 
 
         for (i = 0; i < localStorage.length; i++) {
