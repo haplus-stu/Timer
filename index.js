@@ -21,10 +21,28 @@ let i;
 let cnt = 0;
 
 /**
+ * 通知の許可ダイアログ
+ */
+window.onload = Push.Permission.request();
+
+/**
+ * Push通知を送る関数
+ * @param {string} subject 見出し
+ * @param {string} body 本文
+ */
+function sendPushNotification(subject,body){
+    Push.create(subject,{
+        body:body,
+        timeout:6000
+    });
+}
+
+
+/**
  * DOM要素取得関数
  */
 
-function need_Element(elem_name) {
+function needElement(elem_name) {
     return document.getElementById(elem_name);
 }
 
@@ -33,23 +51,23 @@ function zeroPadding(num, len) {
     return (Array(len).join("0") + num).slice(-len);
 }
 
-function remaing_Time() {
+function remaingTime() {
     return document.getElementById("count_time");
 }
 
 
-function toggle_preset_elm() {
+function togglePresetElm() {
     let ul = document.querySelector(".preset_wrapper");
 
     if (ul.classList.contains("open")) {
 
         ul.classList.remove("open");
-        need_Element("disp_pattern").innerText = "プリセット一覧";
+        needElement("disp_pattern").innerText = "プリセット一覧";
 
     } else {
 
         ul.classList.add("open");
-        need_Element("disp_pattern").innerText = "閉じる";
+        needElement("disp_pattern").innerText = "閉じる";
 
     }
 }
@@ -64,7 +82,7 @@ window.onload = function () {
 
             element_under_preset[j].classList.add("isActive");
         }
-        need_Element("save_pattern").textContent = "作成";
+        needElement("savePattern").textContent = "作成";
 
 
         for (i = 0; i < localStorage.length; i++) {
@@ -97,37 +115,37 @@ window.onload = function () {
 };
 
 //時間の要素取得が多くなったので引数で指定できる関数化
-function need_timer_value(i) {
+function needTimerValue(i) {
     if (document.timer.elements[i].value == "") {
         return (document.timer.elements[i].value = 0);
     }
     return document.timer.elements[i].value;
 }
 
-function inspection_null(target_value) {
+function inspectionNull(target_value) {
     if (target_value == null) throw alert("キャンセルされました。");
 }
 
 
 
-function save_pattern() {
+function savePattern() {
     let preset_name = window.prompt(
         "プリセット名を入力してください",
         "無題のプリセット"
     );
-    inspection_null(preset_name);
+    inspectionNull(preset_name);
 
     let w_min = window.prompt("集中したい分数を入力してください", "0");
-    inspection_null(w_min);
+    inspectionNull(w_min);
 
     let w_sec = window.prompt("集中したい秒数を入力してください", "0");
-    inspection_null(w_sec);
+    inspectionNull(w_sec);
 
     let b_min = window.prompt("休憩したい分数を入力してください", "0");
-    inspection_null(b_min);
+    inspectionNull(b_min);
 
     let b_sec = window.prompt("休憩したい秒数を入力してください", "0");
-    inspection_null(b_sec);
+    inspectionNull(b_sec);
 
     if (w_min == 0 && w_sec == 0 && b_min == 0 && b_sec == 0) {
         throw alert("すべての入力値が0です");
@@ -145,8 +163,8 @@ function save_pattern() {
     localStorage.setItem(preset_prefix + preset_name, obj);
 }
 
-function set_preset_value() {
-    let preset_no = need_Element("preset").value;
+function setPresetValue() {
+    let preset_no = needElement("preset").value;
 
     key_name = localStorage.key(preset_no);
     let jsonObj = localStorage.getItem(key_name);
@@ -158,41 +176,41 @@ function set_preset_value() {
     document.timer.elements[3].value = jsObj.break_sec;
 }
 
-function remove_preset(btn) {
+function removePreset(btn) {
     key_name = localStorage.key(btn.value);
     localStorage.removeItem(key_name);
     location.reload();
 }
 
-function Start_count() {
+function startCount() {
     if (now_status = 0) {
 
-        need_Element("reset").disabled = false;
-        need_Element("start").disabled = false;
+        needElement("reset").disabled = false;
+        needElement("start").disabled = false;
 
     } else if (now_status = 1) {
 
-        need_Element("reset").disabled = false;
-        need_Element("start").disabled = true;
+        needElement("reset").disabled = false;
+        needElement("start").disabled = true;
 
     }
 
     let goal = confirm('目標をきちんと決めましたか？');
 
     if(goal){
-        min = parseInt(need_timer_value(0));
-        sec = parseInt(need_timer_value(1));
+        min = parseInt(needTimerValue(0));
+        sec = parseInt(needTimerValue(1));
 
         work_time = min * 60 + sec;
 
         let msg = zeroPadding(min, 2) + ":" + zeroPadding(sec, 2);
 
-        remaing_Time().innerHTML = msg;
+        remaingTime().innerHTML = msg;
         document.title = FOCUS;
 
         timer = setInterval("countDown()", 1000);
     }else{
-       need_Element("start").disabled = false;
+       needElement("start").disabled = false;
        throw alert('目標を決めてからポモドーロを始めましょう');
     }
 
@@ -211,34 +229,37 @@ function countDown() {
     min = Math.floor(work_time / 60);
     sec = Math.floor(work_time % 60);
 
-    remaing_Time().innerHTML = zeroPadding(min, 2) + ":" + zeroPadding(sec, 2);
+    remaingTime().innerHTML = zeroPadding(min, 2) + ":" + zeroPadding(sec, 2);
 
     if (work_time <= 0) {
         document.title = "ポモドーロ";
         clearInterval(timer);
         now_status = 0;
-        need_Element("start").disabled = false;
-        need_Element("break").disabled = false;
+        needElement("start").disabled = false;
+        needElement("break").disabled = false;
+
+        //プッシュ通知
+        sendPushNotification("集中フェーズ終了！","休憩を取ってリフレッシュ！次に備えましょう！");
         audio_elm.play();
     }
 }
 
-function move_Break() {
-    break_min = parseInt(need_timer_value(2));
-    break_sec = parseInt(need_timer_value(3));
+function moveBreak() {
+    break_min = parseInt(needTimerValue(2));
+    break_sec = parseInt(needTimerValue(3));
 
     break_time = break_min * 60 + break_sec;
-    remaing_Time().innerText =
+    remaingTime().innerText =
         zeroPadding(break_min, 2) + ":" + zeroPadding(break_sec, 2);
     audio_elm.pause();
     audio_elm.currentTime = 0;
 
     if (now_status == 1) {
-        need_Element("start").disabled = false;
-        need_Element("break").disabled = false;
+        needElement("start").disabled = false;
+        needElement("break").disabled = false;
     } else if (now_status == 0) {
-        need_Element("start").disabled = true;
-        need_Element("break").disabled = true;
+        needElement("start").disabled = true;
+        needElement("break").disabled = true;
     }
     document.title = BREAK;
 
@@ -259,31 +280,34 @@ function Breaktime() {
     let count_break_min = Math.floor(break_time / 60);
     let count_break_sec = Math.floor(break_time % 60);
 
-    remaing_Time().innerText =
+    remaingTime().innerText =
         zeroPadding(count_break_min, 2) + ":" + zeroPadding(count_break_sec, 2);
     if (break_time <= 0) {
 
         clearInterval(timer);
 
+        //Push通知
+        sendPushNotification("休憩フェーズ終了","次も頑張りましょう！");
+
         audio_elm.play();
 
-        need_Element("start").disabled = false;
-        need_Element("break").disabled = true;
-        need_Element('reset').disabled = true;
+        needElement("start").disabled = false;
+        needElement("break").disabled = true;
+        needElement('reset').disabled = true;
 
         document.title = "ポモドーロ";
     }
 }
 
-function force_reSet() {
+function forceReset() {
     if (now_status == 1) {
         clearInterval(timer);
 
-        remaing_Time().innerText = work_time = "00:00";
+        remaingTime().innerText = work_time = "00:00";
 
-        need_Element("start").disabled = false;
-        need_Element("break").disabled = true;
-        need_Element("reset").disabled = true;
+        needElement("start").disabled = false;
+        needElement("break").disabled = true;
+        needElement("reset").disabled = true;
 
         audio_elm.pause();
         audio_elm.currentTime = 0;
@@ -292,10 +316,10 @@ function force_reSet() {
     if (now_status == 0) {
         clearInterval(timer);
 
-        remaing_Time().innerText = break_time = "00:00";
+        remaingTime().innerText = break_time = "00:00";
 
-        need_Element("break").disabled = true;
-        need_Element("start").disabled = false;
+        needElement("break").disabled = true;
+        needElement("start").disabled = false;
 
         audio_elm.pause();
         audio_elm.currentTime = 0;
