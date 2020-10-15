@@ -8,8 +8,7 @@ let break_min, break_sec;
 
 //status
 let now_status = 0;
-const BREAK = "ポモドーロ[休憩]";
-const FOCUS = "ポモドーロ[集中]";
+const BREAK = "ポモドーロ[休憩]"; const FOCUS = "ポモドーロ[集中]";
 
 //preset
 let audio_elm = new Audio();
@@ -20,6 +19,10 @@ const preset_prefix = "tp_";
 //other
 let i;
 let cnt = 0;
+
+/**
+ * DOM要素取得関数
+ */
 
 function need_Element(elem_name) {
     return document.getElementById(elem_name);
@@ -174,17 +177,25 @@ function Start_count() {
 
     }
 
-    min = parseInt(need_timer_value(0));
-    sec = parseInt(need_timer_value(1));
+    let goal = confirm('目標をきちんと決めましたか？');
 
-    work_time = min * 60 + sec;
+    if(goal){
+        min = parseInt(need_timer_value(0));
+        sec = parseInt(need_timer_value(1));
 
-    let msg = zeroPadding(min, 2) + ":" + zeroPadding(sec, 2);
+        work_time = min * 60 + sec;
 
-    remaing_Time().innerHTML = msg;
-    document.title = FOCUS;
+        let msg = zeroPadding(min, 2) + ":" + zeroPadding(sec, 2);
 
-    timer = setInterval("countDown()", 1000);
+        remaing_Time().innerHTML = msg;
+        document.title = FOCUS;
+
+        timer = setInterval("countDown()", 1000);
+    }else{
+       need_Element("start").disabled = false;
+       throw alert('目標を決めてからポモドーロを始めましょう');
+    }
+
 }
 
 function countDown() {
