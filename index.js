@@ -8,7 +8,7 @@ let break_min, break_sec;
 
 //status
 let now_status = 0;
-const BREAK = "ポモドーロ[休憩]"; const FOCUS = "ポモドーロ[集中]";
+const BREAK = "Focusaid[休憩]"; const FOCUS = "Focusaid[集中]";
 
 //preset
 let audio_elm = new Audio();
@@ -230,7 +230,7 @@ function countDown() {
     remaingTime().innerHTML = zeroPadding(min, 2) + ":" + zeroPadding(sec, 2);
 
     if (work_time <= 0) {
-        document.title = "ポモドーロ";
+        document.title = "Focusaid";
         clearInterval(timer);
         now_status = 0;
         needElement("start").disabled = false;
@@ -293,7 +293,7 @@ function Breaktime() {
         needElement("break").disabled = true;
         needElement('reset').disabled = true;
 
-        document.title = "ポモドーロ";
+        document.title = "Focusaid";
     }
 }
 
@@ -322,5 +322,5 @@ function forceReset() {
         audio_elm.pause();
         audio_elm.currentTime = 0;
     }
-    document.title = "ポモドーロ";
+    document.title = "Focusaid";
 }
