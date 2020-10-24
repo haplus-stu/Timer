@@ -1,3 +1,7 @@
+html[theme='dark-mode'] {
+    filter: invert(1) hue-rotate(180deg);
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -208,4 +212,20 @@ button#start,
 
 .stop_img {
   background-image: url('img/stop.png');
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background: #333;
+		color: #f4f5f7;
+    }
+	h1,
+	a:link,
+	a:visited {
+		color: #f4f5f7;
+	}
+    .header{
+        background:#555555;
+    }
+
 }
