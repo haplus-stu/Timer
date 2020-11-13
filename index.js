@@ -193,25 +193,18 @@ function startCount() {
 
     }
 
-    let goal = confirm('目標をきちんと決めましたか？');
 
-    if(goal){
-        min = parseInt(needTimerValue(0));
-        sec = parseInt(needTimerValue(1));
+    min = parseInt(needTimerValue(0));
+    sec = parseInt(needTimerValue(1));
 
-        work_time = min * 60 + sec;
+    work_time = min * 60 + sec;
 
-        let msg = zeroPadding(min, 2) + ":" + zeroPadding(sec, 2);
+    let msg = zeroPadding(min, 2) + ":" + zeroPadding(sec, 2);
 
-        remaingTime().innerHTML = msg;
-        document.title = FOCUS;
+    remaingTime().innerHTML = msg;
+    document.title = FOCUS;
 
-        timer = setInterval("countDown()", 1000);
-    }else{
-       needElement("start").disabled = false;
-       throw alert('目標を決めてからポモドーロを始めましょう');
-    }
-
+    timer = setInterval("countDown()", 1000);
 }
 
 function countDown() {
@@ -261,10 +254,10 @@ function moveBreak() {
     }
     document.title = BREAK;
 
-    timer = setInterval("Breaktime()", 1000);
+    timer = setInterval("breakTime()", 1000);
 }
 
-function Breaktime() {
+function breakTime() {
     now_status = 1;
 
     audio_elm.src = "Clock-Alarm03-01(Loop).mp3";
