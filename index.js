@@ -5,10 +5,12 @@ let min, sec, timer;
 let break_count;
 let work_time, break_time;
 let break_min, break_sec;
+let countCycle = 1;
 
 //status
 let now_status = 0;
-const BREAK = "Focusaid[休憩]"; const FOCUS = "Focusaid[集中]";
+const BREAK = "Focusaid[休憩]";
+const FOCUS = "Focusaid[集中]";
 
 //preset
 let audio_elm = new Audio();
@@ -30,13 +32,12 @@ window.onload = Push.Permission.request();
  * @param {string} subject 見出し
  * @param {string} body 本文
  */
-function sendPushNotification(subject,body){
-    Push.create(subject,{
-        body:body,
-        timeout:6000
+function sendPushNotification(subject, body) {
+    Push.create(subject, {
+        body: body,
+        timeout: 6000,
     });
 }
-
 
 /**
  * DOM要素取得関数
@@ -46,7 +47,6 @@ function needElement(elem_name) {
     return document.getElementById(elem_name);
 }
 
-
 function zeroPadding(num, len) {
     return (Array(len).join("0") + num).slice(-len);
 }
@@ -55,18 +55,15 @@ function remaingTime() {
     return document.getElementById("count_time");
 }
 
-
 function togglePresetElm() {
     let ul = document.querySelector(".preset_wrapper");
 
     if (ul.classList.contains("open")) {
         ul.classList.remove("open");
         needElement("disp_pattern").innerText = "プリセット一覧";
-
     } else {
         ul.classList.add("open");
         needElement("disp_pattern").innerText = "閉じる";
-
     }
 }
 
@@ -75,19 +72,15 @@ window.onload = function () {
     let element_under_preset = document.querySelectorAll(".preset");
 
     if (localStorage.length > 0) {
-
-        for (let j = 0; j < element_under_preset.length; j++){
-
+        for (let j = 0; j < element_under_preset.length; j++) {
             element_under_preset[j].classList.add("isActive");
         }
         needElement("save_pattern").textContent = "作成";
-
 
         for (i = 0; i < localStorage.length; i++) {
             key_name = localStorage.key(i);
 
             if (key_name.includes(preset_prefix)) {
-
                 const liEl = document.createElement("option");
                 liEl.textContent = key_name.slice(3);
                 liEl.setAttribute("value", i);
@@ -97,11 +90,7 @@ window.onload = function () {
                 continue;
             }
         }
-
-
-
     } else if (localStorage.length == 0) {
-
         const nothting_msg = document.createElement("p");
         nothting_msg.textContent = "保存されたプリセットはありません。";
 
@@ -123,8 +112,6 @@ function needTimerValue(i) {
 function inspectionNull(target_value) {
     if (target_value == null) throw alert("キャンセルされました。");
 }
-
-
 
 function savePattern() {
     let preset_name = window.prompt(
@@ -153,7 +140,7 @@ function savePattern() {
         work_min: parseInt(w_min) * 60,
         work_sec: parseInt(w_sec),
         break_min: parseInt(b_min) * 60,
-        break_sec: parseInt(b_sec)
+        break_sec: parseInt(b_sec),
     };
 
     let obj = JSON.stringify(time_pattern);
@@ -181,18 +168,13 @@ function removePreset(btn) {
 }
 
 function startCount() {
-    if (now_status = 0) {
-
+    if ((now_status = 0)) {
         needElement("reset").disabled = false;
         needElement("start").disabled = false;
-
-    } else if (now_status = 1) {
-
+    } else if ((now_status = 1)) {
         needElement("reset").disabled = false;
         needElement("start").disabled = true;
-
     }
-
 
     min = parseInt(needTimerValue(0));
     sec = parseInt(needTimerValue(1));
@@ -229,8 +211,22 @@ function countDown() {
         needElement("start").disabled = false;
         needElement("break").disabled = false;
 
-        //プッシュ通知
-        sendPushNotification("集中フェーズ終了！","休憩を取ってリフレッシュ！次に備えましょう！");
+        if (countCycle == 3) {
+            countCycle = 0;
+            //プッシュ通知
+            sendPushNotification(
+                "集中サイクル終了！",
+                "長めの休憩を取ってリフレッシュ！次に備えましょう！"
+            );
+          console.log("集中サイクル終了休憩を取ってリフレッシュ！次に備えましょう！")
+        } else {
+            countCycle++;
+            sendPushNotification(
+                "集中フェーズ終了！",
+                "休憩を取ってリフレッシュ！次に備えましょう！"
+            );
+          console.log("集中フェーズ終了休憩を取ってリフレッシュ！次に備えましょう！")
+        }
         audio_elm.play();
     }
 }
@@ -274,17 +270,16 @@ function breakTime() {
     remaingTime().innerText =
         zeroPadding(count_break_min, 2) + ":" + zeroPadding(count_break_sec, 2);
     if (break_time <= 0) {
-
         clearInterval(timer);
 
         //Push通知
-        sendPushNotification("休憩フェーズ終了","次も頑張りましょう！");
+        sendPushNotification("休憩フェーズ終了", "次も頑張りましょう！");
 
         audio_elm.play();
 
         needElement("start").disabled = false;
         needElement("break").disabled = true;
-        needElement('reset').disabled = true;
+        needElement("reset").disabled = true;
 
         document.title = "Focusaid";
     }
