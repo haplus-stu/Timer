@@ -218,14 +218,12 @@ function countDown() {
                 "集中サイクル終了！",
                 "長めの休憩を取ってリフレッシュ！次に備えましょう！"
             );
-          console.log("集中サイクル終了休憩を取ってリフレッシュ！次に備えましょう！")
         } else {
             countCycle++;
             sendPushNotification(
                 "集中フェーズ終了！",
                 "休憩を取ってリフレッシュ！次に備えましょう！"
             );
-          console.log("集中フェーズ終了休憩を取ってリフレッシュ！次に備えましょう！")
         }
         audio_elm.play();
     }
