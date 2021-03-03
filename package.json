@@ -3,7 +3,7 @@
     "prettier": "^2.1.2"
   },
   "dependencies": {
-    "pug": "^3.0.0",
+    "pug": "^3.0.1",
     "pug-cli": "^1.0.0-alpha6"
   }
 }
