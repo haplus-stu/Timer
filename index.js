@@ -306,3 +306,11 @@ function forceReset() {
   }
   document.title = 'Focusaid';
 }
+
+//Leave site confirm
+window.onbeforeunload = function(e) {
+  if (now_status == 1) {
+    e.preventDefault();
+    return '';
+  }
+};
