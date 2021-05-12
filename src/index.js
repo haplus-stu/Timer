@@ -1,4 +1,7 @@
 'use strict';
+import Preset from './preset-demo.js';
+
+const preset = new Preset();
 
 // Time
 let min, sec, timer;
@@ -25,6 +28,9 @@ let audio_elm = new Audio();
 let i;
 let cnt = 0;
 
+document.getElementById('disp_pattern').addEventListenner('click',preset.togglePresetElm);
+
+window.onload = preset.init();
 
 function startCount() {
 
