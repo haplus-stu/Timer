@@ -1,39 +1,32 @@
 let pelm = document.getElementById('preset');
 let key_name;
-let count = 0;
 const preset_prefix = 'tp_';
 /**
  * 通知の許可ダイアログ
  */
 window.onload = Push.Permission.request();
 
-
-let prompt_value = [
-  {title:'プリセット名を入力してください',default_value:'無題のプリセット'},
-  {title:'集中したい分数を入力してください',default_value:'0'},
-  {title:'集中したい秒数を入力してください',default_value:'0'},
-  {title:'休憩したい分数を入力してください',default_value:'0'},
-  {title:'休憩したい秒数を入力してください',default_value:'0'},
-]
-
 window.onload = function() {
   let element_under_preset = document.querySelectorAll('.preset');
 
   if (localStorage.length > 0) {
-
-    for(let preset of element_under_preset){
-      preset.classList.add('isActive');
+    for (let j = 0; j < element_under_preset.length; j++) {
+      element_under_preset[j].classList.add('isActive');
     }
-
     needElement('save_pattern').textContent = '‰ΩúÊàê';
 
-    for (let key in localStorage){
-      if(!localStorage.hasOwnProperty(key)) continue;
-      const option = document.createElement('option');
-      option.textContent = key.slice(3);
-      option.setAttribute('value',count);
-      pelm.appendChild(option);
-      count++;
+    for (i = 0; i < localStorage.length; i++) {
+      key_name = localStorage.key(i);
+
+      if (key_name.includes(preset_prefix)) {
+        const liEl = document.createElement('option');
+        liEl.textContent = key_name.slice(3);
+        liEl.setAttribute('value', i);
+
+        pelm.appendChild(liEl);
+      } else {
+        continue;
+      }
     }
   } else if (localStorage.length == 0) {
     const nothting_msg = document.createElement('p');
@@ -51,15 +44,23 @@ function inspectionNull(target_value) {
   if (target_value == null) throw alert('キャンセルされました。');
 }
 
-function showPrompt(title,default_value){
-  let prompt = window.prompt(title,default_value);
-  inspectionNull(prompt);
-}
-
 function savePattern() {
-  prompt_value.forEach((target)=>{
-    showPrompt(target.title,target.default_value);
-  });
+  let preset_name =
+      window.prompt('プリセット名を入力してください', '無題のプリセット');
+  inspectionNull(preset_name);
+
+  let w_min = window.prompt('集中したい分数を入力してください', '0');
+  inspectionNull(w_min);
+
+  let w_sec = window.prompt('集中したい秒数を入力してください', '0');
+  inspectionNull(w_sec);
+
+  let b_min = window.prompt('休憩したい分数を入力してください', '0');
+  inspectionNull(b_min);
+
+  let b_sec = window.prompt('休憩したい秒数を入力してください', '0');
+  inspectionNull(b_sec);
+
   if (w_min == 0 && w_sec == 0 && b_min == 0 && b_sec == 0) {
     throw alert('すべての入力値が0です');
   }
