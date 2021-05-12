@@ -1,7 +1,6 @@
 'use strict';
-import Preset from './preset-demo.js';
+import * as Preset from './preset.js';
 
-const preset = new Preset();
 
 // Time
 let min, sec, timer;
@@ -28,9 +27,14 @@ let audio_elm = new Audio();
 let i;
 let cnt = 0;
 
-document.getElementById('disp_pattern').addEventListenner('click',preset.togglePresetElm);
+needElement('disp_pattern').addEventListener('click',Preset.togglePresetElm);
+needElement('save_pattern').addEventListener('click',Preset.savePattern);
+needElement('use_btn').addEventListener('click',Preset.setPresetValue);
 
-window.onload = preset.init();
+window.addEventListener('load',()=>{
+Preset.init(),
+Push.Permission.request()
+});
 
 function startCount() {
 
@@ -86,12 +90,12 @@ function countDown() {
     if (countCycle == 3) {
       countCycle = 0;
       //プッシュ通知
-      sendPushNotification(
+      Preset.sendPushNotification(
           '集中サイクル終了！',
           '長めの休憩を取ってリフレッシュ！次に備えましょう！');
     } else {
       countCycle++;
-      sendPushNotification(
+      Preset.sendPushNotification(
           '集中フェーズ終了！', '休憩を取ってリフレッシュ！次に備えましょう！');
     }
     audio_elm.play();
